@@ -39,7 +39,9 @@ import org.mosaif.ali.feature_note.presentation.NotesHome.components.NoteItem
 import org.mosaif.ali.feature_note.presentation.NotesHome.components.OrderSection
 import org.mosaif.ali.util.Screens
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.filled.Create
 import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.material.icons.filled.Menu
 
 @Composable
 fun NotesHomeScreen(
@@ -58,7 +60,7 @@ fun NotesHomeScreen(
                 },
                 backgroundColor = MaterialTheme.colors.primary
             ) {
-                Icon(imageVector = Icons.Default.Add, contentDescription = "Add note")
+                Icon(imageVector = Icons.Default.Create, contentDescription = "Add note")
             }
         },
         scaffoldState = scaffoldState
@@ -83,7 +85,7 @@ fun NotesHomeScreen(
                     },
                 ) {
                     Icon(
-                        imageVector = Icons.Default.DateRange,
+                        imageVector = Icons.Default.Menu,
                         contentDescription = "Sort"
                     )
                 }
