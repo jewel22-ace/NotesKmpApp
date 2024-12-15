@@ -6,7 +6,7 @@ import org.mosaif.ali.db.getDatabaseBuilder
 import org.mosaif.ali.feature_note.data.datasource.NoteDao
 import org.mosaif.ali.feature_note.data.datasource.NoteDatabase
 
-actual fun platformModule()= module {
+actual fun platformDatabaseModule()= module {
     single<NoteDatabase> { getDatabaseBuilder(get()) }
     single<NoteDao> { getDatabaseBuilder(get()).noteDao() }
 }

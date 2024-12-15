@@ -8,7 +8,7 @@ import org.mosaif.ali.feature_note.data.datasource.NoteDatabase
 import platform.Foundation.NSHomeDirectory
 
 fun getDatabaseBuilder(): NoteDatabase {
-    val dbFile = "${NSHomeDirectory()}/msf_note.db"
+    val dbFile = "${NSHomeDirectory()}/${NoteDatabase.DATABASE_NAME}"
     return Room.databaseBuilder<NoteDatabase>(
         name = dbFile,
         factory = { NoteDatabase::class.instantiateImpl() }

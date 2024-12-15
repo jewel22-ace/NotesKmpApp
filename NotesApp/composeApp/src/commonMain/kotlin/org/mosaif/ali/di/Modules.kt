@@ -13,17 +13,17 @@ import org.mosaif.ali.feature_note.domain.usecase.DeleteNote
 import org.mosaif.ali.feature_note.domain.usecase.GetNote
 import org.mosaif.ali.feature_note.domain.usecase.GetNotes
 import org.mosaif.ali.feature_note.domain.usecase.NoteUseCases
-import org.koin.compose.viewmodel.dsl.viewModelOf
+import org.koin.core.module.dsl.viewModelOf
 import org.mosaif.ali.feature_note.presentation.AddEditNoteScreen.AddEditNoteViewModel
 import org.mosaif.ali.feature_note.presentation.NotesHome.NotesViewModel
 
-expect fun platformModule(): Module
+expect fun platformDatabaseModule(): Module
 
 fun initKoin(config: KoinAppDeclaration? = null) =
     startKoin {
         config?.invoke(this)
         modules(
-            platformModule(),
+            platformDatabaseModule(),
             provideRepositoryModule,
             provideUseCaseModule,
             provideViewModelModule,
@@ -35,18 +35,23 @@ val provideRepositoryModule = module {
 }
 
 val provideUseCaseModule = module {
-    fun provideUseCaseModuleFun(repository: NoteRepository)
-    : NoteUseCases {
-        return NoteUseCases(
-            addNote = AddNote(repository),
-            deleteNote = DeleteNote(repository),
-            getNote = GetNote(repository),
-            getNotes = GetNotes(repository),
-        )
-    }
-    single {
-        provideUseCaseModuleFun(get())
-    }
+//    fun provideUseCaseModuleFun(repository: NoteRepository)
+//    : NoteUseCases {
+//        return NoteUseCases(
+//            addNote = AddNote(repository),
+//            deleteNote = DeleteNote(repository),
+//            getNote = GetNote(repository),
+//            getNotes = GetNotes(repository),
+//        )
+//    }
+//    single {
+//        provideUseCaseModuleFun(get())
+//    }
+    singleOf(::AddNote)
+    singleOf(::DeleteNote)
+    singleOf(::GetNote)
+    singleOf(::GetNotes)
+    singleOf(::NoteUseCases)
 }
 
 val provideViewModelModule = module {
